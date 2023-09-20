@@ -11,7 +11,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://docs.cnosdb.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -28,8 +28,18 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'en-US',
+    locales: ['en-US', 'zh-CN'],
+    localeConfigs: {
+      'en-US': {
+        label: 'English',
+        direction: 'ltr',
+      },
+      'zh-CN': {
+        label: '中文',
+        direction: 'ltr',
+      },
+    },
   },
 
   presets: [
@@ -39,10 +49,24 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: 'latest',
+            },
+          },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: ({ locale, version, versionDocsDirPath, docPath }) => {
+            version = version === 'latest' ? version : `version-${version}`;
+
+            const urls = {
+              'en-US': `https://github.com/leon-ai/docs.getleon.ai/edit/master/${versionDocsDirPath}/${docPath}`,
+              'zh-CN': `https://github.com/leon-ai/docs.getleon.ai/edit/master/i18n/${locale}/docusaurus-plugin-content-docs/${version}/${docPath}`,
+            };
+
+            return urls[locale];
+          },
         },
         blog: {
           showReadingTime: true,
@@ -64,22 +88,27 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'Docs',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Cnosdb',
           src: 'img/logo.png',
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
+            type: 'docsVersionDropdown',
+            position: 'right',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            type: 'localeDropdown',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/cnosdb/docs',
             label: 'GitHub',
+            position: 'right',
+          },
+          {
+            type: 'search',
             position: 'right',
           },
         ],
@@ -128,6 +157,54 @@ const config = {
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      },
+      algolia: {
+        appId: '4O093YZHL1',
+        apiKey: 'b02a6bb324334323de977f71e73d06d0',
+        indexName: 'cnosdb',
+        locales: {
+          '/zh-CN/': {
+            placeholder: '搜索文档',
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档',
+              },
+              modal: {
+                searchBox: {
+                  resetButtonTitle: '清除查询条件',
+                  resetButtonAriaLabel: '清除查询条件',
+                  cancelButtonText: '取消',
+                  cancelButtonAriaLabel: '取消',
+                },
+                startScreen: {
+                  recentSearchesTitle: '搜索历史',
+                  noRecentSearchesText: '没有搜索历史',
+                  saveRecentSearchButtonTitle: '保存至搜索历史',
+                  removeRecentSearchButtonTitle: '从搜索历史中移除',
+                  favoriteSearchesTitle: '收藏',
+                  removeFavoriteSearchButtonTitle: '从收藏中移除',
+                },
+                errorScreen: {
+                  titleText: '无法获取结果',
+                  helpText: '你可能需要检查你的网络连接',
+                },
+                footer: {
+                  selectText: '选择',
+                  navigateText: '切换',
+                  closeText: '关闭',
+                  searchByText: '搜索提供者',
+                },
+                noResultsScreen: {
+                  noResultsText: '无法找到相关结果',
+                  suggestedQueryText: '你可以尝试查询',
+                  reportMissingResultsText: '你认为该查询应该有结果？',
+                  reportMissingResultsLinkText: '点击反馈',
+                },
+              },
+            },
+          },
+        },
       },
       prism: {
         theme: lightCodeTheme,
