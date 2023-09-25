@@ -1,8 +1,5 @@
 ---
-icon: home
-title: Home
-order: -9
-index: false
+slug: /
 ---
 
 # Home

@@ -4,6 +4,8 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const url = process.env.NODE_ENV !== 'development' ? 'https://docs.cnosdb.com' : 'http://localhost:3000'
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'CnosDB',
@@ -11,7 +13,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://docs.cnosdb.com',
+  url,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -19,7 +21,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  projectName: 'docs.cnosdb.com', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -48,6 +50,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           lastVersion: 'current',
           versions: {
@@ -61,20 +64,14 @@ const config = {
             version = version === 'latest' ? version : `version-${version}`;
 
             const urls = {
-              'en-US': `https://github.com/leon-ai/docs.getleon.ai/edit/master/${versionDocsDirPath}/${docPath}`,
-              'zh-CN': `https://github.com/leon-ai/docs.getleon.ai/edit/master/i18n/${locale}/docusaurus-plugin-content-docs/${version}/${docPath}`,
+              'en-US': `https://github.com/cnosdb/docs/edit/master/${versionDocsDirPath}/${docPath}`,
+              'zh-CN': `https://github.com/cnosdb/docs/edit/master/i18n/${locale}/docusaurus-plugin-content-docs/${version}/${docPath}`,
             };
 
             return urls[locale];
           },
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
