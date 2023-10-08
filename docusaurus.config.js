@@ -4,7 +4,10 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
-const url = process.env.NODE_ENV !== 'development' ? 'https://docs.cnosdb.com' : 'http://localhost:3000'
+const url =
+  process.env.NODE_ENV !== 'development'
+    ? 'https://docs.cnosdb.com'
+    : 'http://localhost:3000';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -20,7 +23,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
+  organizationName: 'cnosdb', // Usually your GitHub org/user name.
   projectName: 'docs.cnosdb.com', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -30,17 +33,13 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en-US',
-    locales: ['en-US', 'zh-CN'],
+    defaultLocale: 'en',
+    locales: ['en', 'zh-Hans'],
     localeConfigs: {
-      'en-US': {
-        label: 'English',
-        direction: 'ltr',
+      en: {
+        htmlLang: 'en-US',
       },
-      'zh-CN': {
-        label: '中文',
-        direction: 'ltr',
-      },
+      // 如果你不需要覆盖默认值，你可以忽略这个语言（比如 zh-Hans）
     },
   },
 
