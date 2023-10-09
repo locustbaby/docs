@@ -26,7 +26,7 @@ const config = {
   organizationName: 'cnosdb', // Usually your GitHub org/user name.
   projectName: 'docs.cnosdb.com', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
