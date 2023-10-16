@@ -13,7 +13,7 @@ const url =
 const config = {
   title: 'CnosDB',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   // Set the production url of your site here
   url,
