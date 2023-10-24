@@ -42,6 +42,13 @@ const config = {
       // 如果你不需要覆盖默认值，你可以忽略这个语言（比如 zh-Hans）
     },
   },
+  scripts: [
+    // community 页面引入
+    {
+      src: 'https://apps.elfsight.com/p/platform.js',
+      defer: true,
+    },
+  ],
 
   presets: [
     [
@@ -84,12 +91,52 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Docs',
         logo: {
           alt: 'Cnosdb',
           src: 'img/logo.png',
+          srcDark: 'img/logo_dark.png',
         },
         items: [
+          // left
+          {
+            label: 'Docs',
+            to: 'current',
+            position: 'left',
+          },
+          // TODO: 国际化
+          {
+            type: 'dropdown',
+            label: 'Resources',
+            position: 'left',
+            items: [
+              {
+                label: '快速入门',
+                href: 'https://cnosdb.com',
+              },
+              {
+                label: '生态集成',
+                href: 'https://cnosdb.com',
+              },
+              {
+                label: 'Release notes',
+                href: 'https://cnosdb.com',
+              },
+              {
+                label: '常见问题',
+                href: 'https://cnosdb.com',
+              },
+              {
+                label: 'Community',
+                to: 'community',
+              },
+            ],
+          },
+          {
+            label: 'Blog',
+            to: 'blog',
+            position: 'left',
+          },
+          // right
           {
             type: 'docsVersionDropdown',
             position: 'right',
@@ -116,8 +163,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Style Guide',
+                to: 'docs/',
+              },
+              {
+                label: 'Second Doc',
+                to: 'docs/doc2/',
               },
             ],
           },
@@ -136,23 +187,17 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/docusaurus',
               },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                html: `
+                    <a href="https://www.netlify.com" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Netlify">
+                      <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" width="114" height="51" />
+                    </a>
+                  `,
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `CnosDB ©  ${new Date().getFullYear()}`,
       },
       algolia: {
         appId: '4O093YZHL1',
