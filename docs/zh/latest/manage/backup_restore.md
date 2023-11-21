@@ -152,3 +152,6 @@ restore
 ```shell
 cnosdb-cli --host 127.0.0.1 --port 8902 restore-dump-ddl dump.sql
 ```
+
+**注意**： 2.3.3 升级到 2.3.4 版本后，dump 的 `CREATE USER` 语句中的 hash_password 的字段可能不符合预期，
+请检查下 dump 出来的 SQL文件
